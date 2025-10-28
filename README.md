@@ -1,7 +1,5 @@
 # Patrakaarita
 
-# patrakaarita
-
 Light-weight project that orchestrates two AI agents (researcher + analyst) using `crewai` to fetch and analyze news articles from a URL and produce a text report.
 
 This README explains how to set up the development environment, run the CLI script (`crew.py`), and (optionally) expose a simple web endpoint that triggers analysis and reads the generated report.
