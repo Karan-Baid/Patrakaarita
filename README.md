@@ -1,4 +1,4 @@
-# patrakaarita
+# Patrakaarita
 
 Light-weight project that orchestrates two AI agents (researcher + analyst) using `crewai` to fetch and analyze news articles from a URL and produce a text report.
 
