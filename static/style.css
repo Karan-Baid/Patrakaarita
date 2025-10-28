@@ -1,26 +1,73 @@
 body {
-    background: #f4f6fa;
-    color: #222;
+    background: #181a20;
+    color: #e6e6e6;
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    transition: background 0.3s, color 0.3s;
+}
+body.light {
+    background: #f4f6fa;
+    color: #222;
 }
 .container {
-    max-width: 700px;
-    margin: 40px auto;
+    max-width: 900px;
+    margin: 48px auto;
+    background: #23262f;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 40px 48px 32px 48px;
+    transition: background 0.3s;
+}
+body.light .container {
     background: #fff;
-    border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    padding: 32px 36px 24px 36px;
 }
-header {
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+    margin-bottom: 28px;
+}
+h1 {
+    font-size: 2.3em;
+    margin: 0 auto 18px auto;
+    letter-spacing: 1px;
     text-align: center;
-    margin-bottom: 24px;
+    font-weight: 600;
 }
-.subtitle {
-    color: #666;
-    font-size: 1.1em;
-    margin-top: 0.2em;
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 40px;
+    margin-bottom: 0.5em;
+}
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: #e6e6e6;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    padding: 0.3em 0.7em;
+    border-radius: 6px;
+    position: relative;
+}
+#theme-toggle:hover {
+    background: #23262f44;
+}
+.toggle-caret {
+    font-size: 0.9em;
+    margin-left: 0.2em;
+    opacity: 0.7;
+}
+body.light #theme-toggle {
+    color: #222;
 }
 form {
     display: flex;
@@ -29,41 +76,84 @@ form {
     margin-bottom: 24px;
 }
 input[type="url"] {
-    padding: 10px;
-    border: 1px solid #bbb;
-    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 7px;
     font-size: 1em;
+    background: #23262f;
+    color: #e6e6e6;
+    transition: background 0.3s, color 0.3s, border 0.3s;
 }
-button {
+body.light input[type="url"] {
+    background: #fff;
+    color: #222;
+    border: 1px solid #bbb;
+}
+button[type="submit"] {
     background: #2a7ae2;
     color: #fff;
     border: none;
-    border-radius: 6px;
-    padding: 10px 0;
+    border-radius: 7px;
+    padding: 12px 0;
     font-size: 1.1em;
     cursor: pointer;
     transition: background 0.2s;
+    font-weight: 500;
 }
-button:hover {
+button[type="submit"]:hover {
     background: #1558b0;
 }
 #result-section {
     margin-top: 24px;
 }
 pre#result {
-    background: #f8f8fa;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    background: #181a20;
+    border: 1px solid #333;
+    border-radius: 7px;
     padding: 18px;
-    font-size: 1.05em;
+    font-size: 1.35em;
     white-space: pre-wrap;
     word-break: break-word;
     min-height: 180px;
+    color: #e6e6e6;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+body.light pre#result {
+    background: #f8f8fa;
     color: #222;
+    border: 1px solid #e0e0e0;
 }
 footer {
     text-align: center;
     color: #aaa;
     font-size: 0.95em;
     margin-top: 32px;
+}
+.spinner-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    flex-direction: column;
+}
+.spinner {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: 4px solid #2a7ae2;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 0;
+}
+.spinner-text {
+    margin-top: 0.7em;
+    font-size: 1.1em;
+    color: #2a7ae2;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

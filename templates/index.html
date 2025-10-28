@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Patrakaarita News Analyzer</title>
+    <title>Patrakaarita</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="dark">
     <div class="container">
+        <div class="topbar">
+            <button id="theme-toggle" aria-label="Toggle dark/light mode">
+                <span class="toggle-label">Dark mode</span> <span class="toggle-icon">🌙</span>
+                <span class="toggle-caret">▼</span>
+            </button>
+        </div>
         <header>
-            <h1>Patrakaarita News Analyzer</h1>
-            <p class="subtitle">Extract and analyze news articles with AI</p>
+            <h1>Patrakkarita</h1>
         </header>
         <main>
             <form id="analyze-form">
@@ -18,28 +23,59 @@
                 <button type="submit">Analyze</button>
             </form>
             <section id="result-section" style="display:none;">
-                <h2>Analysis Output</h2>
-                <pre id="result"></pre>
+                <h2>Analysis</h2>
+                <div id="loading-spinner" class="spinner-center" style="display:none; flex-direction:column; align-items:center;">
+                    <div class="spinner"></div>
+                    <div class="spinner-text">Analyzing</div>
+                </div>
+                <pre id="result" style="display:none;"></pre>
             </section>
         </main>
         <footer>
-            <p>&copy; 2025 Patrakaarita Project</p>
+            <p>&copy; 2025 Patrakaarita</p>
         </footer>
     </div>
     <script>
+    // Theme toggle logic
+    const body = document.body;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const label = toggleBtn.querySelector('.toggle-label');
+    const icon = toggleBtn.querySelector('.toggle-icon');
+    function setTheme(theme) {
+        body.className = theme;
+        if (theme === 'dark') {
+            label.textContent = 'Dark mode';
+            icon.textContent = '🌙';
+        } else {
+            label.textContent = 'Light mode';
+            icon.textContent = '☀️';
+        }
+        localStorage.setItem('theme', theme);
+    }
+    toggleBtn.onclick = function() {
+        setTheme(body.className === 'dark' ? 'light' : 'dark');
+    };
+    // On load, set theme from localStorage
+    setTheme(localStorage.getItem('theme') || 'dark');
+
+    // Form logic
     document.getElementById('analyze-form').onsubmit = async function(e) {
         e.preventDefault();
         const url = document.getElementById('url').value;
         const resultSection = document.getElementById('result-section');
         const resultBox = document.getElementById('result');
+        const spinner = document.getElementById('loading-spinner');
         resultSection.style.display = 'block';
-        resultBox.textContent = 'Processing...';
+        resultBox.style.display = 'none';
+        spinner.style.display = 'flex';
         const response = await fetch('/analyze', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url })
         });
         const text = await response.text();
+        spinner.style.display = 'none';
+        resultBox.style.display = 'block';
         resultBox.textContent = text;
     };
     </script>
