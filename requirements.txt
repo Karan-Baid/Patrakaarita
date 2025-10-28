@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+Flask
+crewai[google-genai]
+crewai
+langchain_google_genai
+python-dotenv
+crewai_tools
+litellm
