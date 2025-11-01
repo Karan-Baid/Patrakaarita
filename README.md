@@ -200,14 +200,4 @@ export GOOGLE_API_KEY="..."
 # run analysis (CLI)
 python crew.py
 
-# read the report
-cat output/report.txt
-```
 
----
-
-If you'd like, I can:
-- Create the optional `web.py` + minimal template and a route to serve `output/report.txt` so you have a working frontend example.
-- Adjust `tasks.py` to accept a runtime `output_file` so each request can have its own report path.
-
-Tell me which of those you'd like next and I'll implement it.
