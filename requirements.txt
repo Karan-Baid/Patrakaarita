@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+streamlit
+crewai[google-genai]
+langchain-google-genai
+python-dotenv
+crewai-tools
+litellm
+jinja2
+pydantic
