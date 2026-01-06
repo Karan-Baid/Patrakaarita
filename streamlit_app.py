@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS
+# Custom CSS - Works for both light and dark themes
 st.markdown("""
 <style>
     .main-header {
@@ -22,7 +22,7 @@ st.markdown("""
     .sub-header {
         font-size: 1.2rem;
         text-align: center;
-        color: #666;
+        opacity: 0.8;
         margin-bottom: 2rem;
     }
     .section-header {
@@ -34,20 +34,21 @@ st.markdown("""
         padding-bottom: 0.5rem;
     }
     .claim-item {
-        background-color: #f0f2f6;
+        background-color: rgba(76, 175, 80, 0.1);
         padding: 1rem;
         border-radius: 0.5rem;
         margin-bottom: 0.5rem;
+        border-left: 4px solid #4CAF50;
     }
     .red-flag {
-        background-color: #ffebee;
+        background-color: rgba(244, 67, 54, 0.1);
         padding: 1rem;
         border-radius: 0.5rem;
         margin-bottom: 0.5rem;
         border-left: 4px solid #f44336;
     }
     .verification-q {
-        background-color: #e3f2fd;
+        background-color: rgba(33, 150, 243, 0.1);
         padding: 1rem;
         border-radius: 0.5rem;
         margin-bottom: 0.5rem;
@@ -59,31 +60,6 @@ st.markdown("""
 # Header
 st.markdown('<div class="main-header">📰 Patrakaarita</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">AI-Powered News Article Analysis</div>', unsafe_allow_html=True)
-
-# Sidebar
-with st.sidebar:
-    st.header("ℹ️ About")
-    st.write("""
-    **Patrakaarita** analyzes news articles for:
-    - 💡 Core factual claims
-    - 🎯 Tone and language analysis
-    - 🚩 Potential bias indicators
-    - ✅ Verification questions
-    - 👥 Named entities
-    - 🔄 Opposing viewpoints
-    """)
-    
-    st.divider()
-    
-    st.header("⚙️ Configuration")
-    st.write(f"**LLM:** Groq (llama-3.3-70b)")
-    st.write(f"**Rate Limit:** 30 RPM")
-    
-    with st.expander("🔐 API Keys"):
-        groq_key = os.getenv("GROQ_API_KEY", "Not set")
-        serper_key = os.getenv("SERPER_API_KEY", "Not set")
-        st.write(f"Groq: {'✅ Set' if groq_key != 'Not set' else '❌ Not set'}")
-        st.write(f"Serper: {'✅ Set' if serper_key != 'Not set' else '❌ Not set'}")
 
 # Main content
 st.divider()
@@ -241,7 +217,6 @@ VERIFICATION QUESTIONS
 st.divider()
 st.markdown("""
 <div style="text-align: center; color: #666; font-size: 0.9rem;">
-    Built with ❤️ using CrewAI, Groq, and Pydantic | 
     <a href="https://github.com/Karan-Baid/Patrakaarita">GitHub</a>
 </div>
 """, unsafe_allow_html=True)
