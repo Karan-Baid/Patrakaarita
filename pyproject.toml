@@ -1,0 +1,20 @@
+[project]
+name = "patrakaarita"
+version = "0.1.0"
+description = "AI-powered news article analysis using CrewAI multi-agent system"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+    "flask>=3.0.0",
+    "crewai[google-genai]>=0.86.0",
+    "langchain-google-genai>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "crewai-tools>=0.18.0",
+    "litellm>=1.55.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

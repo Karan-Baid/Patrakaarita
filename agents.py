@@ -4,7 +4,8 @@ load_dotenv()
 import os
 from tools import tool
 
-llm = "google/gemini-2.5-flash"
+# Using Groq for excellent rate limits (30 RPM) and blazing fast inference
+llm = "groq/llama-3.3-70b-versatile"
 
 researcher=Agent(
     role="Web Content Extractor",
@@ -13,7 +14,7 @@ researcher=Agent(
     llm=llm,
     verbose=True,
     memory=True,
-    allow_delegation=True,
+    allow_delegation=False,  # Prevent delegation to reduce API calls
     tools=[tool]
 )
 
@@ -22,8 +23,8 @@ analyst=Agent(
     goal="Analyze an article for factual claims, tone, biases, and verification questions — without making truth judgments.",
     backstory="Skilled in media literacy, bias detection, and structured reporting for online news content.",
     llm=llm,
-    verbose=True,
-    memory=True,
-    allow_delegation=True
+    verbose=False,  # Reduce verbosity to minimize API calls
+    memory=False,    # Disable memory to reduce API calls
+    allow_delegation=False
 )
     
